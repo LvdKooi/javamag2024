@@ -11,12 +11,12 @@ public class Conditional<S, T> {
         throw new UnsupportedOperationException("Not yet implemented!");
     }
 
-    public static <S, U> Pair<Predicate<S>, Function<S, U>> applyIf(Predicate<S> condition, Function<S, U> action) {
+    public static <S, U> ConditionalAction<S, U> applyIf(Predicate<S> condition, Function<S, U> function) {
         throw new UnsupportedOperationException("Not yet implemented!");
     }
 
     @SafeVarargs
-    public final <U> Conditional<S, U> firstMatching(Pair<Predicate<S>, Function<S, U>>... conditionalActions) {
+    public final <U> Conditional<S, U> firstMatching(ConditionalAction<S, U>... actions) {
         throw new UnsupportedOperationException("Not yet implemented!");
     }
 
@@ -40,11 +40,11 @@ public class Conditional<S, T> {
         throw new UnsupportedOperationException("Not yet implemented!");
     }
 
-    public record Pair<S, T>(S key, T value) {
+    public record ConditionalAction<S, T>(Predicate<S> condition, Function<S, T> action) {
 
-        public Pair {
-            Objects.requireNonNull(key);
-            Objects.requireNonNull(value);
+        public ConditionalAction {
+            Objects.requireNonNull(condition);
+            Objects.requireNonNull(action);
         }
     }
 }
